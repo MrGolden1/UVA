@@ -1,60 +1,27 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <queue>
-#include <stack>
-#include <set>
-#include <sstream>
-#include <stdio.h>
-#include <math.h>
-#include <map>
-#include <iomanip>
-
-#define ever (;;)
-
-
+#include <bits/stdc++.h>
 using namespace std;
 
+int sum[100009];
 
-
-
-int main() {
-    int n;
-    int a[100001];
-    while (cin >> n)
+int main(){
+    int N,a,ans,j,k,goal;
+    while(cin>>N)
     {
-        int sum = 0;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-            sum += a[i];
-        }
-        if (sum % 3)
-        {
-            puts("0");
-            continue;
-        }
-        int e = sum / 3;
-        set <int> v;
-        int s = 0;
-        for (int i = 0; i < n; i++)
-        {
-            s += a[i];
-            s%= sum;
-            v.insert(s);
-        }
-        int sol = 0;
-        s = 0;
-        for (int i = 0; i < n; i++)
-        {
-            s+=a[i];
-            if (v.find((s + e)%sum ) != v.end() && v.find((s + 2 * e) %sum) != v.end())
-            {
-                sol++;
-            }
-        }
-        printf("%d\n", sol / 3);
+    	    sum[0] = ans = 0;
+    for (int i=1;i<=N;i++){
+        cin>>a;
+        sum[i] = a+sum[i-1];
     }
+    j = 1,k = 2;
+    goal = sum[N]/3;
+    if (sum[N]%3==0){
+        for (int i=0;i<N;i++){
+            while (k<N&&sum[k]-sum[i]<goal)k++;
+            while (j<N&&sum[j]-sum[k]<goal)j++;
+            if (j<N&&k<N&&sum[j]-sum[k]==goal&&sum[k]-sum[i]==goal)ans++;
+        }
+    }
+    cout<<ans<<endl;
+	}
     return 0;
 }
