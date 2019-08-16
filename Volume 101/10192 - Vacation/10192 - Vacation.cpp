@@ -7,8 +7,8 @@ int x[1001][1001];
 string str1, str2;
 int lcs(int i, int j)
 {
-        if (i < 0 || j < 0)
-            return 0;
+    if (i < 0 || j < 0)
+        return 0;
     if (str1[i] == str2[j])
     {
         if (x[i - 1][j - 1] == -1)
@@ -34,14 +34,17 @@ int main()
     {
         x[i][0] = 0;
     }
+    int counter = 1;
     while (getline(cin, str1))
     {
+        if (str1 == "#")
+            break;
         getline(cin, str2);
         str1 = str1 + " ";
         str2 = str2 + " ";
         m = str1.length();
         n = str2.length();
-        for (int i = m - 1; i > -1 ; i--)
+        for (int i = m - 1; i > -1; i--)
         {
             str1[i + 1] = str1[i];
         }
@@ -61,14 +64,15 @@ int main()
             }
         }
         x[0][0] = 0;
-        cout << lcs(m , n ) - 1 << endl;
-    /*  for (int i = 0; i < m ; i++)
-        {
-            for (int j = 0; j < n ; j++)
+        cout << "Case #"<< counter << ": you can visit at most " << lcs(m, n) - 1 << " cities." << endl;
+        counter++;
+        /*  for (int i = 0; i < m ; i++)
             {
-                cout << setw(4) << x[i][j];
-            }
-            cout << endl;
-        }*/
+                for (int j = 0; j < n ; j++)
+                {
+                    cout << setw(4) << x[i][j];
+                }
+                cout << endl;
+            }*/
     }
 }

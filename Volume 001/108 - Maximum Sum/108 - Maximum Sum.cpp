@@ -65,4 +65,5 @@ while len(nums) != 0:
             if sum > maxsum:
                 maxsum = sum
     print(maxsum)
-    del nums[0:(n**2)+1]*/
+    del nums[0:(n**2)+1]
+    */
